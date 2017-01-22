@@ -16,7 +16,6 @@ export function getSafePath(url: string): string {
     let sURL = path.normalize(url).replace(/\\/gm, '/')
     if (sURL.endsWith('/'))
         sURL = sURL.substr(0, sURL.length - 1)
-    console.log(url, sURL)
 
     let i = 0
     while (i < sURL.length && (sURL.charAt(i) == '.' || sURL.charAt(i) == '/'))
@@ -51,6 +50,7 @@ export class Flames {
         this.router = Router()
         this.router.use((req, res, next) => {
             this.getData(req.path)
+                .catch(err => next())
                 .then((data) => res.render(data.tpl, data))
                 .catch(err => next(err))
         })
@@ -60,7 +60,7 @@ export class Flames {
         if (safe)
             urlPath = getSafePath(urlPath)
 
-        if (this.config['cache'] && urlPath in this.cache) {
+        if (urlPath in this.cache) {
             let d = new Date()
             d.setTime(d.getTime() - this.config['cacheLife'])
             if (this.cache[urlPath].timestamp > d)

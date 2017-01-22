@@ -15,6 +15,7 @@ const uuid = require('node-uuid')
 const md5 = require('md5')
 
 const flame = new Flames({
+    cache: false,
     path: path.join(__dirname, '..', 'content'),
     defaultTpl: 'first',
     globalData: {
@@ -40,7 +41,6 @@ app.engine('hbs', handlebars({
     partialsDir: path.join(__dirname, '..', 'views/partials/')
 }))
 app.set('view engine', 'hbs')
-app.enable('view cache')
 
 //const dbPromise = MongoClient.connect(constants.mongo)
 

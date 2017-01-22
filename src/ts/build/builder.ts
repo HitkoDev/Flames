@@ -10,7 +10,7 @@ const regex = new RegExp('[^0-9a-zA-Z\u1E00-\u1EFF\u0100-\u017F\u0180-\u024F\.\_
 
 import * as VinylFile from 'vinyl'
 
-declare interface FlamesFile extends VinylFile {
+export interface FlamesFile extends VinylFile {
     flContents: any
     parents: Array<string>
     name: string
