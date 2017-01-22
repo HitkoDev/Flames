@@ -66,7 +66,7 @@ const flame = new flames.Flames({
 app.use('/blog', flame.router)
 ```
 
-## It's static, except when it's not
+## It's dynamic, except when it's not
 
 You compile your LESS / SASS, you transpile and minify your scripts, you precompile your templates - all to make the site lighter and faster. And the next thing you do is upload these files, along with a some of photos / images and a nice admin interface, to your server. 
 
